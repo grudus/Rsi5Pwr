@@ -1,0 +1,17 @@
+<section>
+  <h1>Dodaj książkę</h1>
+
+
+  <form [formGroup]="formGroup" (submit)="addBook()" class="form">
+    <input placeholder="Author" formControlName="Author">
+    <input placeholder="Title" formControlName="Title">
+    <input placeholder="Publisher" formControlName="Publisher">
+    <input placeholder="PublicationYear" formControlName="PublicationYear">
+    <input placeholder="ISBNnumber" formControlName="ISBNnumber">
+
+
+    <button type="submit">Dodaj książkę</button>
+  </form>
+
+
+</section>

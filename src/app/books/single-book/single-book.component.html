@@ -1,3 +1,18 @@
-<p>
-  single-book works!
-</p>
+<form (ngSubmit)="updateBook()" [formGroup]="formGroup" class="form">
+  <input placeholder="Author" formControlName="Author">
+  <input placeholder="Title" formControlName="Title">
+  <input placeholder="Publisher" formControlName="Publisher">
+  <input placeholder="PublicationYear" formControlName="PublicationYear">
+  <input placeholder="ISBNnumber" formControlName="ISBNnumber">
+
+  <button type="submit">Wyślij zmiany</button>
+</form>
+
+
+<button (click)="deleteBook()">
+  Usuń książkę
+</button>
+
+
+
+
