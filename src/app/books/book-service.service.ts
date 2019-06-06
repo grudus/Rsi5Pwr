@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book } from './models/Book';
 import * as xml2js from '../utils/json2xml';
-import convertXmlToJson from '../utils/xml2json';
+import convertJsonToXml from '../utils/xml2json';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -52,7 +52,7 @@ export class BookServiceService {
         'Response-Type': 'text'
       })
     };
-    const xmlBook = convertXmlToJson(book);
+    const xmlBook = convertJsonToXml(book);
     return this.httpClient.post(`${this.baseUrl}/xml/books`, xmlBook, httpOptions);
   }
 }
