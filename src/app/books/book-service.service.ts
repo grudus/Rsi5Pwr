@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book } from './models/Book';
 import * as xml2js from '../utils/json2xml';
+import convertXmlToJson from '../utils/xml2json';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -44,7 +45,14 @@ export class BookServiceService {
     return this.httpClient.delete(`${this.baseUrl}/json/books/${id}`, {responseType: 'text'});
   }
 
-  update(id: string, updatedBook: Book): Observable<any> {
-    return this.httpClient.put<Book>(`${this.baseUrl}/json/books/${id}`, updatedBook, {responseType: 'text' as 'json'});
+  addBookXml(book: Book): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/xml',
+        'Response-Type': 'text'
+      })
+    };
+    const xmlBook = convertXmlToJson(book);
+    return this.httpClient.post(`${this.baseUrl}/xml/books`, xmlBook, httpOptions);
   }
 }
